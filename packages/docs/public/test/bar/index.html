@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><title>New Remix App</title><meta content="width=device-width,initial-scale=1" name="viewport"/></head><body><div style="font-family:system-ui, sans-serif;line-height:1.4"><h1>Hello, bar!</h1><ul><li><a href="/test">Test</a></li></ul></div><script>(STORAGE_KEY => {
+    if (!window.history.state || !window.history.state.key) {
+      let key = Math.random().toString(32).slice(2);
+      window.history.replaceState({
+        key
+      }, "");
+    }
+
+    try {
+      let positions = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}");
+      let storedY = positions[window.history.state.key];
+
+      if (typeof storedY === "number") {
+        window.scrollTo(0, storedY);
+      }
+    } catch (error) {
+      console.error(error);
+      sessionStorage.removeItem(STORAGE_KEY);
+    }
+  })("positions")</script><link rel="modulepreload" href="/build/_shared/chunk-YLZDQIMX.js"/><link rel="modulepreload" href="/build/root-UJAPTGTT.js"/><link rel="modulepreload" href="/build/routes/test.$slug-HV36N3TG.js"/><script>window.__remixContext = {'actionData':undefined,'appState':{'trackBoundaries':true,'trackCatchBoundaries':true,'catchBoundaryRouteId':null,'renderBoundaryRouteId':null,'loaderBoundaryRouteId':null,'error':undefined,'catch':undefined},'matches':[{'params':{'slug':'bar'},'pathname':'/','route':{'id':'root','parentId':undefined,'path':'','index':undefined,'caseSensitive':undefined,'module':'/build/root-UJAPTGTT.js','imports':undefined,'hasAction':false,'hasLoader':false,'hasCatchBoundary':false,'hasErrorBoundary':false}},{'params':{'slug':'bar'},'pathname':'/test/bar','route':{'id':'routes/test.$slug','parentId':'root','path':'test/:slug','index':undefined,'caseSensitive':undefined,'module':'/build/routes/test.$slug-HV36N3TG.js','imports':undefined,'hasAction':false,'hasLoader':true,'hasCatchBoundary':false,'hasErrorBoundary':false}}],'routeData':{'routes/test.$slug':'Hello, bar!'}};</script><script src="/build/manifest-0D1DA685.js"></script><script type="module">import * as route0 from "/build/root-UJAPTGTT.js";
+import * as route1 from "/build/routes/test.$slug-HV36N3TG.js";
+window.__remixRouteModules = {"root":route0,"routes/test.$slug":route1};</script><script src="/build/entry.client-TD6LEOZ7.js" type="module"></script></body></html>

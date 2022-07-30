@@ -1,0 +1,133 @@
+/**
+ * @remix-run/dev v1.6.6
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+var path = require("path");
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== "default") {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(
+          n,
+          k,
+          d.get
+            ? d
+            : {
+                enumerable: true,
+                get: function () {
+                  return e[k];
+                },
+              }
+        );
+      }
+    });
+  }
+  n["default"] = e;
+  return Object.freeze(n);
+}
+
+var path__namespace = /*#__PURE__*/ _interopNamespace(path);
+
+/**
+ * This plugin substitutes an empty module for any modules in the `app`
+ * directory that match the given `filter`.
+ */
+function emptyModulesPlugin(config, filter) {
+  return {
+    name: "empty-modules",
+
+    setup(build) {
+      build.onResolve(
+        {
+          filter: /.*/,
+        },
+        (args) => {
+          if (
+            !args.resolveDir
+              .replace(/\\/g, "/")
+              .endsWith("node_modules/@remix-run/react/dist/esm") ||
+            args.path !== "./data.js"
+          ) {
+            return undefined;
+          }
+          console.log("HERE!!!");
+          return {
+            path: require("path").resolve(args.resolveDir, args.path),
+            namespace: "override-data-module",
+          };
+        }
+      );
+      build.onLoad(
+        {
+          filter: /.*/,
+          namespace: "override-data-module",
+        },
+        (args) => {
+          return {
+            // Use an empty CommonJS module here instead of ESM to avoid "No
+            // matching export" errors in esbuild for stuff that is imported
+            // from this file.
+            contents: require("fs").readFileSync(
+              require.resolve("remix-ssg/lib/data-override.ts"),
+              "utf8"
+            ),
+            loader: "ts",
+            resolveDir: require("path").dirname(args.path)
+          };
+        }
+      );
+
+      build.onResolve(
+        {
+          filter,
+        },
+        (args) => {
+          let resolved = path__namespace.resolve(args.resolveDir, args.path);
+
+          if (
+            // Limit this behavior to modules found in only the `app` directory.
+            // This allows node_modules to use the `.server.js` and `.client.js`
+            // naming conventions with different semantics.
+            resolved.startsWith(config.appDirectory)
+          ) {
+            return {
+              path: args.path,
+              namespace: "empty-module",
+            };
+          }
+        }
+      );
+      build.onLoad(
+        {
+          filter: /.*/,
+          namespace: "empty-module",
+        },
+        () => {
+          return {
+            // Use an empty CommonJS module here instead of ESM to avoid "No
+            // matching export" errors in esbuild for stuff that is imported
+            // from this file.
+            contents: "module.exports = {};",
+            loader: "js",
+          };
+        }
+      );
+    },
+  };
+}
+
+exports.emptyModulesPlugin = emptyModulesPlugin;
