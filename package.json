@@ -4,11 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build:docs": "npm run --workspace docs build",
-    "changeset`": "changeset"
-  },
-  "devDependencies": {
-    "@changesets/cli": "^2.24.1"
+    "build:docs": "npm run --workspace docs build"
   },
   "engines": {
     "node": ">=14"

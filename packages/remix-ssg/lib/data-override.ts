@@ -38,6 +38,7 @@ export async function fetchData(
   signal: AbortSignal,
   submission?: Submission
 ): Promise<Response | Error> {
+  url = new URL(url);
   url.searchParams.set("_data", routeId);
   url.pathname = url.pathname.replace(/\/$/, "") + `/_${routeId}_data.json`;
 

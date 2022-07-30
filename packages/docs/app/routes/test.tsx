@@ -14,13 +14,19 @@ export default function Test() {
       <h1>{useLoaderData()}</h1>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link prefetch="intent" to="/">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="foo">Foo</Link>
+          <Link prefetch="intent" to="foo">
+            Foo
+          </Link>
         </li>
         <li>
-          <Link to="bar">Bar</Link>
+          <Link prefetch="intent" to="bar">
+            Bar
+          </Link>
         </li>
       </ul>
     </div>
