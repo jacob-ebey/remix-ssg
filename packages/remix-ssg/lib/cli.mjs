@@ -15,18 +15,6 @@ await cli.run(["build"]).then(async () => {
   const build = await import(remixConfig.serverBuildPath);
   const remixHandler = createRequestHandler(build, "production");
 
-  /**
-   *
-   * @param {string} routeId
-   * @param {string} rest
-   * @returns {string}
-   */
-  const getFullRoutePath = (routeId, rest = "") => {
-    const route = build.routes[routeId];
-    const result = route.path ? `${route.path}${rest}` : rest;
-    return route.parentId ? getFullRoutePath(route.parentId, result) : result;
-  };
-
   const paths = new Set();
   const pathPromises = [];
   for (const [routeId, route] of Object.entries(build.routes)) {
@@ -35,22 +23,17 @@ await cli.run(["build"]).then(async () => {
         Promise.resolve(route.module.getStaticPaths()).then((staticPaths) => {
           if (staticPaths && Array.isArray(staticPaths)) {
             for (const path of staticPaths) {
-              if (typeof path === "string") {
-                paths.add(path);
+              if (path && typeof path === "string") {
+                if (process.env.BASENAME) {
+                  paths.add(process.env.BASENAME + path.replace(/^\//, ""));
+                } else {
+                  paths.add(path);
+                }
               }
             }
           }
         })
       );
-    }
-
-    const fullPath = getFullRoutePath(routeId);
-    if (
-      !fullPath.startsWith(":") &&
-      !fullPath.includes("/:") &&
-      !fullPath.includes("*")
-    ) {
-      paths.add(fullPath);
     }
   }
 
@@ -61,6 +44,7 @@ await cli.run(["build"]).then(async () => {
   }
 
   console.info("Generating static HTML pages...");
+  console.log(paths);
   for (const routePath of paths) {
     const url = new URL(routePath, `http://remix-ssg.com`);
     url.search = "";

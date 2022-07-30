@@ -4,6 +4,10 @@ export function loader() {
   return "Test";
 }
 
+export function getStaticPaths() {
+  return ["/test"];
+}
+
 export default function Test() {
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
