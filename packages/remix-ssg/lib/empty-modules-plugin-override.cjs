@@ -60,11 +60,10 @@ function emptyModulesPlugin(config, filter) {
             !args.resolveDir
               .replace(/\\/g, "/")
               .endsWith("node_modules/@remix-run/react/dist/esm") ||
-            args.path !== "./data.js"
+            (args.path !== "./data.js" && args.path !== "./links.js")
           ) {
             return undefined;
           }
-          console.log("HERE!!!");
           return {
             path: require("path").resolve(args.resolveDir, args.path),
             namespace: "override-data-module",
@@ -77,16 +76,19 @@ function emptyModulesPlugin(config, filter) {
           namespace: "override-data-module",
         },
         (args) => {
+          console.log(args.path);
           return {
             // Use an empty CommonJS module here instead of ESM to avoid "No
             // matching export" errors in esbuild for stuff that is imported
             // from this file.
             contents: require("fs").readFileSync(
-              require.resolve("remix-ssg/lib/data-override.ts"),
+              args.path.endsWith("data.js")
+                ? require.resolve("remix-ssg/lib/data-override.ts")
+                : require.resolve("remix-ssg/lib/links-override.ts"),
               "utf8"
             ),
             loader: "ts",
-            resolveDir: require("path").dirname(args.path)
+            resolveDir: require("path").dirname(args.path),
           };
         }
       );
