@@ -28,7 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish
-        if: steps.changesets.outputs.published
+        if: steps.changesets.outputs.published == 'true'
         # You can do something when a publish should happen.
         run: npm publish --workspaces
         env:
