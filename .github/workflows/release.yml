@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v2
 
       - name: Install Changesets CLI
-        run: npm i -g @changesets/cli
+        run: npm i @changesets/cli
 
       - name: Create Release Pull Request or Release
         id: changesets
