@@ -3,6 +3,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "changeset`": "changeset"
+  },
   "devDependencies": {
     "@changesets/cli": "^2.24.1"
   }
