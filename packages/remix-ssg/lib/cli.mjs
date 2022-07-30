@@ -2,10 +2,12 @@ import * as fs from "fs";
 import * as path from "path";
 import { cli } from "@remix-run/dev";
 import { readConfig } from "@remix-run/dev/dist/config.js";
-import { createRequestHandler } from "@remix-run/node";
+import { createRequestHandler, installGlobals } from "@remix-run/node";
 import * as HTMLParser from "htmlparser2";
 
 process.env.NODE_ENV = "production";
+
+installGlobals();
 
 await cli.run(["build"]).then(async () => {
   let publicDir = path.resolve(process.argv.slice(2)[0] || "public");
