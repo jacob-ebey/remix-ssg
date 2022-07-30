@@ -24,7 +24,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Build Docs
-        runs: npm run build:docs
+        run: npm run build:docs
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
