@@ -18,17 +18,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
 
-      - name: Install Dependencies
-        uses: bahmutov/npm-install@v1
+      - name: Install Changesets CLI
+        uses: npm i -g @changesets/cli
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create Release Pull Request or Release
         id: changesets
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish
-        if: steps.changesets.outputs.published
+        if: steps.changesets.outputs.published == 'true'
         # You can do something when a publish should happen.
         run: npm publish --workspaces
         env:
