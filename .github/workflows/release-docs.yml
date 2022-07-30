@@ -25,6 +25,9 @@ jobs:
 
       - name: Build Docs
         run: npm run build:docs
+        env:
+          BASEPATH: ${{ secrets.BASEPATH }}
+          PUBLIC_PATH: ${{ secrets.PUBLIC_PATH }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
