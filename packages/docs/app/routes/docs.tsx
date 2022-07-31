@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { NavLink, Outlet, useLoaderData } from "@remix-run/react";
+import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { getDocs } from "~/api.server";
 
 export function loader() {
@@ -26,12 +26,12 @@ export default function Test() {
               <ul className="block flex-wrap list-none pl-0 mb-0 mt-0">
                 {docs.map((doc) => (
                   <li key={doc.slug}>
-                    <NavLink
+                    <Link
                       className="text-sm block mb-2 mx-4 no-underline"
                       to={doc.slug}
                     >
                       {doc.title}
-                    </NavLink>
+                    </Link>
                   </li>
                 ))}
               </ul>

@@ -1,10 +1,10 @@
 import * as React from "react";
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
-  Link,
   Links,
   LiveReload,
   Meta,
+  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -124,20 +124,21 @@ function Shell({ children }: { children: React.ReactNode }) {
                 !menuOpen && "hidden"
               )}
             >
-              <Link
+              <NavLink
+                end
                 onClick={handleMenuItemClick}
                 to="/"
                 className="py-2 px-6 flex hover:text-black"
               >
                 Home
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 onClick={handleMenuItemClick}
                 to="/docs/"
                 className="py-2 px-6 flex hover:text-black"
               >
                 Docs
-              </Link>
+              </NavLink>
               <a
                 href="https://github.com/jacob-ebey/remix-ssg"
                 className="py-2 px-6 flex hover:text-black"
