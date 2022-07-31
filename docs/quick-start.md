@@ -32,7 +32,7 @@ order: 1
    }
    ```
 
-1. Add a `getStaticPaths` export to `app/routes/index.tsx`:
+1. Add a `getStaticPaths` export to your routes. For example `app/routes/index.tsx` may look like:
 
    ```tsx
    export function getStaticPaths() {
