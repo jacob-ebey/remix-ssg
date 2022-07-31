@@ -18,7 +18,6 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
 
-
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
@@ -30,3 +29,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           publish: npm publish --workspaces
+          commit: "chore: Update version for release"
+          title: "chore: Update version for release"
+          createGithubReleases: true
