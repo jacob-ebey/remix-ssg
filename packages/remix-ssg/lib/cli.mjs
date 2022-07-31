@@ -17,7 +17,7 @@ await cli.run(["build"]).then(async () => {
   const build = await import(remixConfig.serverBuildPath);
   const remixHandler = createRequestHandler(build, "production");
 
-  const paths = new Set();
+  const paths = new Set([]);
   const pathPromises = [];
   for (const [routeId, route] of Object.entries(build.routes)) {
     if (typeof route.module.getStaticPaths === "function") {
@@ -47,17 +47,30 @@ await cli.run(["build"]).then(async () => {
 
   console.info("Generating static HTML pages...");
   console.log(paths);
-  for (const routePath of paths) {
+  for (const routePath of paths.values()) {
     const url = new URL(routePath, `http://remix-ssg.com`);
     url.search = "";
     url.hash = "";
+    url.pathname = routePath;
 
-    console.info(url.pathname);
+    const htmlFile = path.join(
+      publicDir,
+      routePath.replace(/^\//, ""),
+      "index.html"
+    );
+    const dataFileTemplate = path.join(
+      publicDir,
+      routePath.replace(/^\//, ""),
+      `_{{routeId}}_data.json`
+    );
 
     const request = new Request(url.href);
     const response = await remixHandler(request);
     const html = await response.text();
     const document = HTMLParser.parseDocument(html);
+    fs.mkdirSync(path.dirname(htmlFile), { recursive: true });
+    fs.writeFileSync(htmlFile, html, "utf8");
+
     const script = findScriptTag(document);
     if (script) {
       const evalScript = `(() => {${script.replace(
@@ -68,18 +81,39 @@ await cli.run(["build"]).then(async () => {
       for (const [routeId, routeData] of Object.entries(
         remixContext.routeData
       )) {
-        const htmlFile = path.join(publicDir, url.pathname, "index.html");
-        fs.mkdirSync(path.dirname(htmlFile), { recursive: true });
-        fs.writeFileSync(htmlFile, html, "utf8");
-
-        const dataFile = path.join(
-          publicDir,
-          url.pathname.replace(/^\//, ""),
-          `_${routeId}_data.json`
-        );
+        const dataFile = dataFileTemplate.replace("{{routeId}}", routeId);
         fs.mkdirSync(path.dirname(dataFile), { recursive: true });
         fs.writeFileSync(dataFile, JSON.stringify(routeData), "utf8");
       }
+    }
+  }
+
+  const url = new URL("/404", `http://remix-ssg.com`);
+  const request = new Request(url.href);
+  const response = await remixHandler(request);
+  const html = await response.text();
+  const document = HTMLParser.parseDocument(html);
+  const htmlFile = path.join(publicDir, "404.html");
+  fs.mkdirSync(path.dirname(htmlFile), { recursive: true });
+  fs.writeFileSync(htmlFile, html, "utf8");
+
+  const dataFileTemplate = path.join(
+    publicDir,
+    "404",
+    `_{{routeId}}_data.json`
+  );
+
+  const script = findScriptTag(document);
+  if (script) {
+    const evalScript = `(() => {${script.replace(
+      /^window\.__remixContext = /,
+      "return "
+    )}})()`;
+    const remixContext = eval(evalScript);
+    for (const [routeId, routeData] of Object.entries(remixContext.routeData)) {
+      const dataFile = dataFileTemplate.replace("{{routeId}}", routeId);
+      fs.mkdirSync(path.dirname(dataFile), { recursive: true });
+      fs.writeFileSync(dataFile, JSON.stringify(routeData), "utf8");
     }
   }
 });

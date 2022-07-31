@@ -9,12 +9,17 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
+  useFetchers,
+  useTransition,
 } from "@remix-run/react";
+import NProgress from "nprogress";
 import clsx from "clsx";
 
+import nProgressStyles from "nprogress/nprogress.css";
 import tailwindStylesHref from "./tailwind.css";
 
 export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: nProgressStyles },
   { rel: "stylesheet", href: tailwindStylesHref },
 ];
 
@@ -76,11 +81,33 @@ function Document({ children }: { children: React.ReactNode }) {
 }
 
 function Shell({ children }: { children: React.ReactNode }) {
+  const transition = useTransition();
+  const fetchers = useFetchers();
   const [menuOpen, setMenuOpen] = React.useState(false);
-
   const handleMenuItemClick = () => {
     setMenuOpen(false);
   };
+
+  const state = React.useMemo<"idle" | "loading">(
+    function getGlobalState() {
+      const states = [
+        transition.state,
+        ...fetchers.map((fetcher) => fetcher.state),
+      ];
+      if (states.every((state) => state === "idle")) return "idle";
+      return "loading";
+    },
+    [transition.state, fetchers]
+  );
+
+  React.useEffect(() => {
+    if (state === "idle") NProgress.done();
+    else NProgress.start();
+
+    return () => {
+      NProgress.done();
+    };
+  }, [state]);
 
   return (
     <div className="dark:bg-gray-800 font-mono bg-white relative overflow-y-auto h-screen dark:text-white text-gray-800">

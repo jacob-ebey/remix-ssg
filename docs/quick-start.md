@@ -25,7 +25,7 @@ order: 1
    ```json
    {
      "scripts": {
-       "build": "remix-ssg",
+       "build": "remix-ssg public",
        "dev": "remix dev",
        "start": "serve -l 3000 public"
      }
