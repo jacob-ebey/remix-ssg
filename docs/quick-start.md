@@ -14,10 +14,10 @@ order: 1
 
    Choose "Just the basics" and the "Remix App Server" when prompted.
 
-1. Install `serve` to serve the static assets:
+1. Install `remix-ssg` and `serve` to serve the static assets:
 
    ```bash
-   npm install serve
+   npm install -D remix-ssg serve
    ```
 
 1. Update your `package.json` `scripts` to use `remix-ssg` instead of `remix` and `serve` instead of `remix-serve`:
