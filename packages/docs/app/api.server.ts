@@ -19,7 +19,6 @@ interface DocWithHTML extends Doc {
 export function getDocBySlug(slug: string): DocWithHTML | undefined {
   const dir = path.resolve(process.cwd(), "../../docs");
   const fullPath = path.join(dir, `${slug}.md`);
-  console.log(fullPath);
   if (!fs.existsSync(fullPath)) {
     return undefined;
   }

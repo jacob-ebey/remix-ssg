@@ -45,8 +45,7 @@ await cli.run(["build"]).then(async () => {
     throw new Error("No static paths found");
   }
 
-  console.info("Generating static HTML pages...");
-  console.log(paths);
+  console.info(`Generating ${paths.size} static HTML pages...`);
   for (const routePath of paths.values()) {
     const url = new URL(routePath, `http://remix-ssg.com`);
     url.search = "";

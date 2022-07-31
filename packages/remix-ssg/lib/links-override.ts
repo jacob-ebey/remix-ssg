@@ -419,7 +419,6 @@ export function getDataLinkHrefs(
   manifest: AssetsManifest
 ): string[] {
   let path = parsePathPatch(page);
-  console.log("HERE!!!!");
   return dedupeHrefs(
     matches
       .filter((match) => manifest.routes[match.route.id].hasLoader)

@@ -76,7 +76,6 @@ function emptyModulesPlugin(config, filter) {
           namespace: "override-data-module",
         },
         (args) => {
-          console.log(args.path);
           return {
             // Use an empty CommonJS module here instead of ESM to avoid "No
             // matching export" errors in esbuild for stuff that is imported
