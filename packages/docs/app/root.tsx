@@ -134,7 +134,7 @@ function Shell({ children }: { children: React.ReactNode }) {
               </NavLink>
               <NavLink
                 onClick={handleMenuItemClick}
-                to="/docs/"
+                to="docs"
                 className="py-2 px-6 flex hover:text-black"
               >
                 Docs
