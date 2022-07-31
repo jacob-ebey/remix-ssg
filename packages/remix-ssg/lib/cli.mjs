@@ -60,7 +60,7 @@ await cli.run(["build"]).then(async () => {
     const dataFileTemplate = path.join(
       publicDir,
       routePath.replace(/^\//, ""),
-      `_{{routeId}}_data.json`
+      `${build.assets.version.toLowerCase()}_{{routeId}}_data.json`
     );
 
     const request = new Request(url.href);
@@ -99,7 +99,7 @@ await cli.run(["build"]).then(async () => {
   const dataFileTemplate = path.join(
     publicDir,
     "404",
-    `_{{routeId}}_data.json`
+    `${build.assets.version.toLowerCase()}_{{routeId}}_data.json`
   );
 
   const script = findScriptTag(document);

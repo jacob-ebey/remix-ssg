@@ -40,7 +40,11 @@ export async function fetchData(
 ): Promise<Response | Error> {
   url = new URL(url);
   url.searchParams.set("_data", routeId);
-  url.pathname = url.pathname.replace(/\/$/, "") + `/_${routeId}_data.json`;
+  url.pathname =
+    url.pathname.replace(/\/$/, "") +
+    `/${(
+      window as any
+    ).__remixManifest.version.toLowerCase()}_${routeId}_data.json`;
 
   let init: RequestInit = submission
     ? getActionInit(submission, signal)

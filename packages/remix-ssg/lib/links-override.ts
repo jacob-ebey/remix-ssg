@@ -427,7 +427,10 @@ export function getDataLinkHrefs(
         let searchParams = new URLSearchParams(search);
         searchParams.set("_data", match.route.id);
         pathname =
-          (pathname || "").replace(/\/$/, "") + `/_${match.route.id}_data.json`;
+          (pathname || "").replace(/\/$/, "") +
+          `/${(window as any).__remixManifest.version.toLowerCase()}_${
+            match.route.id
+          }_data.json`;
         return `${pathname}?${searchParams}`;
       })
   );
