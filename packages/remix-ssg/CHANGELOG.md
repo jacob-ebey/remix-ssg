@@ -1,5 +1,13 @@
 # remix-ssg
 
+## 0.0.3
+
+### Patch Changes
+
+- [#8](https://github.com/jacob-ebey/remix-ssg/pull/8) [`288b07b`](https://github.com/jacob-ebey/remix-ssg/commit/288b07b2b00f9e2f4258b3021b95e03b1885f401) Thanks [@jacob-ebey](https://github.com/jacob-ebey)! - Add 404.html generation as most hosts fallback to this file when nothing else is found.
+
+* [#10](https://github.com/jacob-ebey/remix-ssg/pull/10) [`d2dac5b`](https://github.com/jacob-ebey/remix-ssg/commit/d2dac5bf4ace68cdfc314c33fa7950442a1f4ff7) Thanks [@jacob-ebey](https://github.com/jacob-ebey)! - Updated changesets
+
 ## 0.0.2
 
 ### Patch Changes
