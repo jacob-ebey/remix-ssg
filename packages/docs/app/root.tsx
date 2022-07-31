@@ -26,6 +26,7 @@ export const links: LinksFunction = () => [
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Remix SSG",
+  description: "Build blazing fast static sites using Remix!",
   viewport: "width=device-width,initial-scale=1",
 });
 
@@ -149,6 +150,7 @@ function Shell({ children }: { children: React.ReactNode }) {
               </a>
             </nav>
             <button
+              title="Menu"
               className="sm:hidden flex flex-col ml-4"
               onClick={() => setMenuOpen(!menuOpen)}
             >
