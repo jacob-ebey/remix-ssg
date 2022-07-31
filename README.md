@@ -4,6 +4,13 @@ Simple SSG for [Remix](https://remix.run/).
 
 [Read the Docs](https://remix-ssg.pages.dev/docs)
 
+# Docs
+
+Deployed to multiple hosts:
+[Github Pages](https://remix-ssg.pages.dev)
+[Netlify](https://remix-ssg.netlify.app)
+[Vercel](https://remix-ssg.vercel.app)
+
 ## Quick Start
 
 1. Initialize a new remix project:
