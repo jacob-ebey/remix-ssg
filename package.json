@@ -8,5 +8,9 @@
   },
   "engines": {
     "node": ">=14"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.4.6",
+    "@changesets/cli": "^2.24.1"
   }
 }
