@@ -3,7 +3,7 @@ import { NavLink, Outlet, useLoaderData } from "@remix-run/react";
 import { getDocs } from "~/api.server";
 
 export function loader() {
-  let docs = getDocs()
+  const docs = getDocs()
     .sort(
       (a, b) =>
         ((a.attributes as any)?.order || Number.MAX_SAFE_INTEGER) -

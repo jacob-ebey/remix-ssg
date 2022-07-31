@@ -10,7 +10,7 @@ process.env.NODE_ENV = "production";
 installGlobals();
 
 await cli.run(["build"]).then(async () => {
-  let publicDir = path.resolve(process.argv.slice(2)[0] || "public");
+  const publicDir = path.resolve(process.argv.slice(2)[0] || "public");
   const remixConfig = await readConfig();
 
   /** @type {import("@remix-run/node").ServerBuild} */

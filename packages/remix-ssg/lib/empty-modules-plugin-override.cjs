@@ -97,7 +97,7 @@ function emptyModulesPlugin(config, filter) {
           filter,
         },
         (args) => {
-          let resolved = path__namespace.resolve(args.resolveDir, args.path);
+          const resolved = path__namespace.resolve(args.resolveDir, args.path);
 
           if (
             // Limit this behavior to modules found in only the `app` directory.

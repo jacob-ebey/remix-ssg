@@ -38,7 +38,7 @@ export function getDocs(
   dir = path.resolve(process.cwd(), "../../docs"),
   baseDir = path.resolve(process.cwd(), "../../docs")
 ): Doc[] {
-  let docs: Doc[] = [];
+  const docs: Doc[] = [];
   for (const entry of fs.readdirSync(dir)) {
     const fullPath = path.join(dir, entry);
     const stat = fs.statSync(fullPath);
@@ -48,7 +48,7 @@ export function getDocs(
       const slug = relativePath.replace(/\.md$/, "").replace(/_index$/, "");
 
       const markdown = fs.readFileSync(fullPath, "utf8");
-      let { attributes } = frontmatter<Doc["attributes"]>(markdown);
+      const { attributes } = frontmatter<Doc["attributes"]>(markdown);
 
       docs.push({
         fullPath,

@@ -14,7 +14,7 @@ export const links = () => [
 ];
 
 export function loader({ params }: LoaderArgs) {
-  let doc = getDocBySlug(params["*"] || "");
+  const doc = getDocBySlug(params["*"] || "");
 
   if (!doc) throw json(null, 404);
 

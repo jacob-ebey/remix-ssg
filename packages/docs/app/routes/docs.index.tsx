@@ -13,7 +13,7 @@ export const links = () => [
 ];
 
 export function loader() {
-  let { html } = getDocBySlug("_index") || {};
+  const { html } = getDocBySlug("_index") || {};
 
   return json({ html });
 }

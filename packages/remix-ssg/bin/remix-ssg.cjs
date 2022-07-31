@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-let childProcess = require("child_process");
-let path = require("path");
+const childProcess = require("child_process");
+const path = require("path");
 
 childProcess.fork(
   path.resolve(__dirname, "../lib/cli.mjs"),

@@ -1,14 +1,10 @@
-let fs = require("fs");
-let path = require("path");
+const fs = require("fs");
+const path = require("path");
 
-let ogExtensions = require.extensions[".js"];
+const ogExtensions = require.extensions[".js"];
 require.extensions[".js"] = (mod, filename) => {
-  if (
-    filename.endsWith(
-      "dev/dist/compiler/plugins/emptyModulesPlugin.js"
-    )
-  ) {
-    let content = fs.readFileSync(
+  if (filename.endsWith("dev/dist/compiler/plugins/emptyModulesPlugin.js")) {
+    const content = fs.readFileSync(
       path.resolve(__dirname, "empty-modules-plugin-override.cjs"),
       "utf8"
     );
