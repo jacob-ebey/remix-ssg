@@ -43,13 +43,9 @@ export function getDocs(
     const fullPath = path.join(dir, entry);
     const stat = fs.statSync(fullPath);
 
-    if (
-      stat.isFile() &&
-      entry.endsWith(".md") &&
-      !entry.endsWith("_index.md")
-    ) {
+    if (stat.isFile() && entry.endsWith(".md")) {
       const relativePath = path.relative(baseDir, fullPath);
-      const slug = relativePath.replace(/\.md$/, "");
+      const slug = relativePath.replace(/\.md$/, "").replace(/_index$/, "");
 
       const markdown = fs.readFileSync(fullPath, "utf8");
       let { attributes } = frontmatter<Doc["attributes"]>(markdown);

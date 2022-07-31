@@ -3,13 +3,13 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "clean": "rimraf public/**/*.{css,js,json,html} build",
+    "clean": "rimraf .cache public/build public/docs public/*.html build",
     "build": "npm run clean && run-s build:*",
     "build:css": "tailwindcss -o ./app/tailwind.css --minify",
     "build:remix": "remix-ssg public",
     "dev": "npm run clean && npm run build:css && run-p dev:*",
-    "dev:css": "tailwindcss -o ./app/tailwind.css --watch",
     "dev:remix": "remix dev",
+    "dev:css": "tailwindcss -o ./app/tailwind.css  --minify --watch",
     "start": "serve -l 3000 public"
   },
   "dependencies": {
