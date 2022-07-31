@@ -31,7 +31,7 @@ jobs:
         uses: actions/cache@v3
         id: playwright-cache
         with:
-          path: ${{ matrix.playwright_binary_path }}
+          path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-${{ runner.arch }}-cache-playwright-${{ steps.playwright-version.outputs.version }}
 
       - name: 🖨️ Playwright info
@@ -39,7 +39,7 @@ jobs:
         run: |
           echo "OS: ${{ matrix.os }}"
           echo "Playwright version: ${{ steps.playwright-version.outputs.version }}"
-          echo "Playwright install dir: ${{ matrix.playwright_binary_path }}"
+          echo "Playwright install dir: ~/.cache/ms-playwright"
           echo "Cache key: ${{ runner.os }}-${{ runner.arch }}-cache-playwright-${{ steps.playwright-version.outputs.version }}"
           echo "Cache hit: ${{ steps.playwright-cache.outputs.cache-hit == 'true' }}"
 
