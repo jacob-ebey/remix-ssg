@@ -6,7 +6,9 @@
   "scripts": {
     "build:docs": "npm run --workspace docs build",
     "start:docs": "npm run --workspace docs start",
-    "test": "playwright test"
+    "test": "playwright test",
+    "release": "changeset publish",
+    "version": "changeset version"
   },
   "engines": {
     "node": ">=14"

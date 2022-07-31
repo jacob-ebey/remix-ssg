@@ -28,7 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          publish: npm publish --workspaces
+          publish: npm run release
+          version: npm run version
           commit: "chore: Update version for release"
           title: "chore: Update version for release"
-          createGithubReleases: true
