@@ -7,9 +7,10 @@ Simple SSG for [Remix](https://remix.run/).
 # Docs
 
 Deployed to multiple hosts:
-[Github Pages](https://remix-ssg.pages.dev)
-[Netlify](https://remix-ssg.netlify.app)
-[Vercel](https://remix-ssg.vercel.app)
+
+- [Github Pages](https://remix-ssg.pages.dev)
+- [Netlify](https://remix-ssg.netlify.app)
+- [Vercel](https://remix-ssg.vercel.app)
 
 ## Quick Start
 
