@@ -1,5 +1,11 @@
 # remix-ssg
 
+## 0.0.8
+
+### Patch Changes
+
+- [`9748c36`](https://github.com/jacob-ebey/remix-ssg/commit/9748c363c63789121eb8ed5e51379f2ae9ed62ec) Thanks [@jacob-ebey](https://github.com/jacob-ebey)! - hash static json files
+
 ## 0.0.7
 
 ### Patch Changes
