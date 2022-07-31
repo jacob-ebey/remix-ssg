@@ -1,5 +1,11 @@
 # remix-ssg
 
+## 0.0.5
+
+### Patch Changes
+
+- [`3d43c3e`](https://github.com/jacob-ebey/remix-ssg/commit/3d43c3e9f2c28b69b2a68ad8a0235d41c51bf94a) Thanks [@jacob-ebey](https://github.com/jacob-ebey)! - removed unwanted logs
+
 ## 0.0.4
 
 ### Patch Changes
