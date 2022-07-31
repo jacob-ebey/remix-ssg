@@ -1,7 +1,7 @@
 ---
 title: How this works
 description: What is Remix SSG and how does it work?
-order: 0
+order: 1
 ---
 
 # How this works

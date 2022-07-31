@@ -1,7 +1,7 @@
 ---
 title: Quick Start
 description: Get up and running with Remix SSG in minutes.
-order: 1
+order: 2
 ---
 
 # Quick Start
