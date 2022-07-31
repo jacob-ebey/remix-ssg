@@ -10,7 +10,8 @@
     "dev": "npm run clean && npm run build:css && run-p dev:*",
     "dev:remix": "remix dev",
     "dev:css": "tailwindcss -o ./app/tailwind.css  --minify --watch",
-    "start": "serve -l 3000 public"
+    "start": "serve -l 3000 public",
+    "test": "playwright test"
   },
   "dependencies": {
     "@remix-run/node": "^1.6.6",
@@ -28,6 +29,7 @@
     "sanitize-html": "^2.7.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.24.2",
     "@remix-run/dev": "^1.6.6",
     "@remix-run/eslint-config": "^1.6.6",
     "@tailwindcss/typography": "^0.5.4",

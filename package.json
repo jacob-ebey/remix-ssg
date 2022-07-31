@@ -4,9 +4,9 @@
     "packages/*"
   ],
   "scripts": {
-    "build:docs": "npm run --workspace docs build",
+    "build": "turbo run build",
+    "test": "turbo run test",
     "start:docs": "npm run --workspace docs start",
-    "test": "playwright test",
     "release": "changeset publish",
     "version": "changeset version"
   },
@@ -16,6 +16,6 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.6",
     "@changesets/cli": "^2.24.1",
-    "@playwright/test": "^1.24.2"
+    "turbo": "^1.4.0"
   }
 }
