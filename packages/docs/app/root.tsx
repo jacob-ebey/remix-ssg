@@ -138,6 +138,14 @@ function Shell({ children }: { children: React.ReactNode }) {
               >
                 Docs
               </Link>
+              <a
+                href="https://github.com/jacob-ebey/remix-ssg"
+                className="py-2 px-6 flex hover:text-black"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Source
+              </a>
             </nav>
             <button
               className="sm:hidden flex flex-col ml-4"
