@@ -6,4 +6,5 @@ node_modules
 
 app/tailwind.css
 /public
-!public/favicon.ico
+!/public/favicon.ico
+!/public/_headers
