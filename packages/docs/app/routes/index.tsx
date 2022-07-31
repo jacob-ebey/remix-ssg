@@ -9,10 +9,10 @@ export default function Index() {
     <div className="flex relative items-center">
       <div className="container mx-auto px-6 flex flex-col justify-between items-center relative py-4">
         <div className="flex flex-col">
-          <p className="text-3xl my-6 text-center dark:text-white">Remix SSG</p>
-          <h2 className="max-w-3xl text-5xl md:text-6xl font-bold mx-auto dark:text-white text-gray-800 text-center py-2">
+          <h1 className="text-3xl my-6 text-center dark:text-white">Remix SSG</h1>
+          <p className="max-w-3xl text-5xl md:text-6xl font-bold mx-auto dark:text-white text-gray-800 text-center py-2">
             Build blazing fast static sites using Remix!
-          </h2>
+          </p>
           <div className="flex items-center justify-center mt-4">
             <Link
               to="docs"
