@@ -1,5 +1,11 @@
 # remix-ssg
 
+## 0.0.4
+
+### Patch Changes
+
+- [`5c464e9`](https://github.com/jacob-ebey/remix-ssg/commit/5c464e9afa0a52c881cc08d1fa4b2b3799620bed) Thanks [@jacob-ebey](https://github.com/jacob-ebey)! - updated changeset
+
 ## 0.0.3
 
 ### Patch Changes
